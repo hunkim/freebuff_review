@@ -1,46 +1,101 @@
 # Freebuff Review
 
-Freebuff CLI의 **Solar Pro 4**로 코드를 리뷰하고, 발견 사항을 검증·수정·테스트한 뒤 GitHub PR을 만드는 Codex 스킬입니다. 리뷰만 요청하면 수정과 PR 생성은 생략합니다.
+An agent-independent skill for reviewing code with **Freebuff CLI and Solar Pro 4**, validating findings, fixing confirmed issues, running tests, and preparing a GitHub pull request. Review-only requests skip fixes and PR creation.
 
-## 설치
+The core instructions use ordinary terminal, Git, and GitHub capabilities and can be adapted by Codex, Claude Code, and other coding assistants that support local skills or reusable instructions. The assistant installs Freebuff if it is missing and selects **Solar Pro 4 (`upstage/solar-pro4`) as the default model**.
 
-저장소를 복제하고 스킬 폴더를 Codex 스킬 디렉터리에 복사합니다. 기존 `freebuff-review`가 있으면 먼저 내용을 확인하세요.
+## Give this repository URL to your assistant
 
-```bash
-git clone https://github.com/hunkim/freebuff_review.git
-mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-cp -R freebuff_review/skills/freebuff-review "${CODEX_HOME:-$HOME/.codex}/skills/"
-```
+Use the following two messages in your coding assistant. The skill name, folder, and conversational invocation are all `freebuff_review`.
 
-새 Codex 세션에서 `$freebuff-review`를 호출합니다.
+### 한국어
 
-## 사용 예시
+**1. 스킬 만들기**
 
 ```text
-$freebuff-review 이 저장소를 Solar Pro 4로 리뷰하고,
-검증된 문제를 수정한 뒤 테스트하고 PR을 만들어줘.
+https://github.com/hunkim/freebuff_review 저장소를 참고해서
+현재 AI 도구에서 사용할 freebuff_review 스킬을 만들어줘.
+README와 skills/freebuff_review/SKILL.md를 읽고,
+현재 도구가 지원하는 스킬 경로와 형식으로 설치해줘.
+Freebuff가 없으면 설치하고 기본 모델은 Solar Pro 4로 선택해줘.
 ```
+
+**2. 바로 실행하기**
 
 ```text
-$freebuff-review 현재 변경 사항만 리뷰해줘. 수정과 PR 생성은 하지 마.
+freebuff_review 해줘. 현재 저장소를 리뷰하고 검증된 문제를 수정한 뒤
+관련 테스트를 실행하고 GitHub PR을 만들어줘.
 ```
 
-## 실행 흐름
+리뷰만 원하면: `freebuff_review 해줘. 현재 변경 사항만 리뷰하고 수정이나 PR 생성은 하지 마.`
 
-1. 저장소 지침과 Git 상태, 리뷰 범위를 확인합니다.
-2. **Freebuff가 없으면 설치합니다.** Node.js/npm이 없다면 환경에 맞는 설치부터 진행하고, `npm install -g freebuff` 후 설치 결과를 확인합니다. 필요한 환경 권한은 해당 환경의 승인 절차를 따릅니다.
-3. 필요한 경우 `freebuff login`으로 사용자 브라우저 인증을 안내합니다. **기본 모델을 Solar Pro 4(`upstage/solar-pro4`)로 선택·저장**하고, 실제 CLI 표시와 기본 선택 유지 여부를 확인합니다.
-4. Freebuff가 `FREEBUFF_CODE_REVIEW.md`를 작성합니다.
-5. 발견 사항을 코드와 테스트로 검증하고, 요청 범위에 따라 수정·테스트·PR 생성을 진행합니다.
+### English
 
-Freebuff CLI, Node.js/npm, Git이 필요하며, PR 생성에는 인증된 GitHub CLI(`gh`) 또는 사용 가능한 GitHub 도구가 필요합니다. Freebuff 인증은 사용자 계정으로 완료해야 합니다. CLI 옵션과 모델 제공 여부는 실행 시 확인하며, 다른 모델의 결과를 Solar Pro 4 리뷰로 표시하지 않습니다.
+**1. Create the skill**
 
-## 구성
+```text
+Use https://github.com/hunkim/freebuff_review to create a freebuff_review
+skill for this AI tool. Read README.md and skills/freebuff_review/SKILL.md,
+then install it using this tool's supported skill location and format.
+Install Freebuff if it is missing and select Solar Pro 4 as the default model.
+```
 
-- [`skills/freebuff-review/SKILL.md`](skills/freebuff-review/SKILL.md): 리뷰, 설치, 검증 및 PR 워크플로
-- [`skills/freebuff-review/agents/openai.yaml`](skills/freebuff-review/agents/openai.yaml): Codex UI 메타데이터
+**2. Run it immediately**
 
-이 저장소는 스킬 지침을 제공합니다. Freebuff나 Solar Pro 4의 소스 코드는 포함하지 않습니다. 기존 `freebuff_sp4_review` 스킬에서 프로젝트 전용 지침을 제거해 공개용으로 정리했습니다.
+```text
+Run freebuff_review. Review the current repository, fix validated issues,
+run relevant tests, and create a GitHub pull request.
+```
+
+For review only: `Run freebuff_review on the current changes. Do not modify source or create a PR.`
+
+### 日本語
+
+**1. スキルを作成する**
+
+```text
+https://github.com/hunkim/freebuff_review を参考にして、
+現在のAIツールで使える freebuff_review スキルを作成してください。
+README.md と skills/freebuff_review/SKILL.md を読み、
+このツールが対応するスキルの保存先と形式でインストールしてください。
+Freebuff が未インストールならインストールし、
+デフォルトモデルを Solar Pro 4 に設定してください。
+```
+
+**2. すぐに実行する**
+
+```text
+freebuff_review を実行してください。現在のリポジトリをレビューし、
+検証済みの問題を修正して関連テストを実行し、GitHub PRを作成してください。
+```
+
+レビューのみの場合: `freebuff_review を実行してください。現在の変更だけをレビューし、ソースの修正やPRの作成はしないでください。`
+
+## Instructions for the installing assistant
+
+1. Fetch and read [`skills/freebuff_review/SKILL.md`](skills/freebuff_review/SKILL.md) in full. If the repository page does not expose file contents, use the [raw skill file](https://raw.githubusercontent.com/hunkim/freebuff_review/main/skills/freebuff_review/SKILL.md) or clone the repository.
+2. Detect the host assistant's supported skill format, installation location, and discovery rules. Install the core `SKILL.md` there, preserving its workflow and the user's existing skills. Keep the requested skill name `freebuff_review`. If the host requires a different native identifier, explain that constraint and keep `freebuff_review` as the conversational invocation. Do not assume every assistant uses Codex paths or invocation syntax.
+3. The [`agents/openai.yaml`](skills/freebuff_review/agents/openai.yaml) file is optional Codex UI metadata. Other assistants can ignore it. No host-specific API is required by the workflow.
+4. Check and install Freebuff and any missing Node.js/npm prerequisites, then authenticate when necessary and select/save Solar Pro 4 as the default. Follow the host's actual permission requirements. Browser authentication may require the user.
+5. Confirm the installed skill and explain the host's native invocation syntax. If it needs a new session to discover installed skills, say so. When asked to run immediately, read and apply the installed instructions in the current session if the host permits it.
+6. If the host cannot persist custom skills, explain the limitation and apply the core instructions directly to the requested review using its available tools. Do not claim a persistent skill was installed.
+
+## Workflow
+
+1. Read repository instructions, Git state, and the requested scope.
+2. Install missing Freebuff and prerequisites, and verify the installed CLI.
+3. Authenticate when needed; select and save Solar Pro 4 as the default and verify the running CLI's model display.
+4. Have Freebuff write `FREEBUFF_CODE_REVIEW.md`.
+5. Validate findings and, within the requested scope, fix issues, run checks, and create a PR.
+
+The assistant needs local terminal access to run Freebuff, Node.js/npm, and Git. PR creation also needs an authenticated GitHub CLI (`gh`) or another available GitHub integration. Model availability and CLI options are checked at runtime. Another model's output must not be reported as a Solar Pro 4 review.
+
+## Files
+
+- [`skills/freebuff_review/SKILL.md`](skills/freebuff_review/SKILL.md): portable installation, model selection, review, validation, and PR instructions.
+- [`skills/freebuff_review/agents/openai.yaml`](skills/freebuff_review/agents/openai.yaml): optional Codex UI metadata.
+
+This repository contains skill instructions, not the Freebuff or Solar Pro 4 source code.
 
 ## License
 

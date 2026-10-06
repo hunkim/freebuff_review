@@ -1,4 +1,0 @@
-interface:
-  display_name: "Freebuff Review"
-  short_description: "Review and fix code with Freebuff Solar Pro 4"
-  default_prompt: "Use $freebuff-review to review this repository with Solar Pro 4, validate findings, and prepare fixes and a pull request."
