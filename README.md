@@ -13,18 +13,13 @@ Use the following two messages in your coding assistant. The skill name, folder,
 **1. 스킬 만들기**
 
 ```text
-https://github.com/hunkim/freebuff_review 저장소를 참고해서
-현재 AI 도구에서 사용할 freebuff_review 스킬을 만들어줘.
-README와 skills/freebuff_review/SKILL.md를 읽고,
-현재 도구가 지원하는 스킬 경로와 형식으로 설치해줘.
-Freebuff가 없으면 설치하고 기본 모델은 Solar Pro 4로 선택해줘.
+https://github.com/hunkim/freebuff_review 참고해서 freebuff_review 스킬 만들어줘.
 ```
 
 **2. 바로 실행하기**
 
 ```text
-freebuff_review 해줘. 현재 저장소를 리뷰하고 검증된 문제를 수정한 뒤
-관련 테스트를 실행하고 GitHub PR을 만들어줘.
+freebuff_review 해줘.
 ```
 
 리뷰만 원하면: `freebuff_review 해줘. 현재 변경 사항만 리뷰하고 수정이나 PR 생성은 하지 마.`
@@ -34,17 +29,13 @@ freebuff_review 해줘. 현재 저장소를 리뷰하고 검증된 문제를 수
 **1. Create the skill**
 
 ```text
-Use https://github.com/hunkim/freebuff_review to create a freebuff_review
-skill for this AI tool. Read README.md and skills/freebuff_review/SKILL.md,
-then install it using this tool's supported skill location and format.
-Install Freebuff if it is missing and select Solar Pro 4 as the default model.
+Create a freebuff_review skill from https://github.com/hunkim/freebuff_review.
 ```
 
 **2. Run it immediately**
 
 ```text
-Run freebuff_review. Review the current repository, fix validated issues,
-run relevant tests, and create a GitHub pull request.
+Run freebuff_review.
 ```
 
 For review only: `Run freebuff_review on the current changes. Do not modify source or create a PR.`
@@ -54,24 +45,20 @@ For review only: `Run freebuff_review on the current changes. Do not modify sour
 **1. スキルを作成する**
 
 ```text
-https://github.com/hunkim/freebuff_review を参考にして、
-現在のAIツールで使える freebuff_review スキルを作成してください。
-README.md と skills/freebuff_review/SKILL.md を読み、
-このツールが対応するスキルの保存先と形式でインストールしてください。
-Freebuff が未インストールならインストールし、
-デフォルトモデルを Solar Pro 4 に設定してください。
+https://github.com/hunkim/freebuff_review を参考に freebuff_review スキルを作成してください。
 ```
 
 **2. すぐに実行する**
 
 ```text
-freebuff_review を実行してください。現在のリポジトリをレビューし、
-検証済みの問題を修正して関連テストを実行し、GitHub PRを作成してください。
+freebuff_review を実行してください。
 ```
 
 レビューのみの場合: `freebuff_review を実行してください。現在の変更だけをレビューし、ソースの修正やPRの作成はしないでください。`
 
 ## Instructions for the installing assistant
+
+A request to create this skill from the repository URL includes the setup below. Carry it out without asking the user to repeat file names, installation paths, or model settings. A plain `freebuff_review` request runs the full workflow on the current repository: review, validate, fix, test, and create a PR. Honor any narrower scope or review-only instruction.
 
 1. Fetch and read [`skills/freebuff_review/SKILL.md`](skills/freebuff_review/SKILL.md) in full. If the repository page does not expose file contents, use the [raw skill file](https://raw.githubusercontent.com/hunkim/freebuff_review/main/skills/freebuff_review/SKILL.md) or clone the repository.
 2. Detect the host assistant's supported skill format, installation location, and discovery rules. Install the core `SKILL.md` there, preserving its workflow and the user's existing skills. Keep the requested skill name `freebuff_review`. If the host requires a different native identifier, explain that constraint and keep `freebuff_review` as the conversational invocation. Do not assume every assistant uses Codex paths or invocation syntax.

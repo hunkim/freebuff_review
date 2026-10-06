@@ -9,6 +9,8 @@ Use Freebuff with Solar Pro 4 to independently review the repository and scope r
 
 These instructions are agent-independent. Use the host assistant's available shell, terminal, Git, and GitHub tools. No Codex-specific API is required. The skill name and conversational invocation are `freebuff_review`; native invocation syntax depends on the host.
 
+A plain `freebuff_review` request defaults to the current repository and the full review, validation, fix, test, and PR workflow. The user does not need to repeat setup or model-selection instructions. Honor explicit scope and review-only constraints.
+
 ## Prepare and install
 
 - Read repository instructions and inspect Git status, the remote default branch, and existing pull requests. Preserve ongoing user changes and compare PR changes against the current base branch. Follow repository branch conventions; otherwise use a descriptive branch such as `freebuff_review/<topic>`.
