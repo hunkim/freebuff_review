@@ -63,7 +63,7 @@ A request to create this skill from the repository URL includes the setup below.
 1. Fetch and read [`skills/freebuff_review/SKILL.md`](skills/freebuff_review/SKILL.md) in full. If the repository page does not expose file contents, use the [raw skill file](https://raw.githubusercontent.com/hunkim/freebuff_review/main/skills/freebuff_review/SKILL.md) or clone the repository.
 2. Detect the host assistant's supported skill format, installation location, and discovery rules. Install the core `SKILL.md` there, preserving its workflow and the user's existing skills. Keep the requested skill name `freebuff_review`. If the host requires a different native identifier, explain that constraint and keep `freebuff_review` as the conversational invocation. Do not assume every assistant uses Codex paths or invocation syntax.
 3. The [`agents/openai.yaml`](skills/freebuff_review/agents/openai.yaml) file is optional Codex UI metadata. Other assistants can ignore it. No host-specific API is required by the workflow.
-4. Check and install Freebuff and any missing Node.js/npm prerequisites, then authenticate when necessary and select/save Solar Pro 4 as the default. Follow the host's actual permission requirements. Browser authentication may require the user.
+4. Check and install Freebuff and any missing Node.js/npm prerequisites, then start `freebuff login` yourself when authentication is missing and select/save Solar Pro 4 as the default. Before push/PR creation, check GitHub authentication and start its login flow if needed. Verify successful authentication and resume the workflow. Follow the host's actual permission requirements. Browser authentication may require the user.
 5. Confirm the installed skill and explain the host's native invocation syntax. If it needs a new session to discover installed skills, say so. When asked to run immediately, read and apply the installed instructions in the current session if the host permits it.
 6. If the host cannot persist custom skills, explain the limitation and apply the core instructions directly to the requested review using its available tools. Do not claim a persistent skill was installed.
 
@@ -71,9 +71,9 @@ A request to create this skill from the repository URL includes the setup below.
 
 1. Read repository instructions, Git state, and the requested scope.
 2. Install missing Freebuff and prerequisites, and verify the installed CLI.
-3. Authenticate when needed; select and save Solar Pro 4 as the default and verify the running CLI's model display.
+3. Start Freebuff login when needed and resume after user browser approval; select and save Solar Pro 4 as the default and verify the running CLI's model display.
 4. Have Freebuff write `FREEBUFF_CODE_REVIEW.md`.
-5. Validate findings and, within the requested scope, fix issues, run checks, and create a PR.
+5. Validate findings and, within the requested scope, fix issues and run checks. Start GitHub login if needed, then push and create a PR.
 
 The assistant needs local terminal access to run Freebuff, Node.js/npm, and Git. PR creation also needs an authenticated GitHub CLI (`gh`) or another available GitHub integration. Model availability and CLI options are checked at runtime. Another model's output must not be reported as a Solar Pro 4 review.
 
